@@ -1,6 +1,10 @@
+// Import the necessary Java utility package
 import java.util.*;
 
+// Main class for executing the binary search tree operations
 public class Main {
+
+    // Main method to start the program
     public static void main(String[] args) {
         // Perform operations on the binary search tree
         performTreeOperations();
