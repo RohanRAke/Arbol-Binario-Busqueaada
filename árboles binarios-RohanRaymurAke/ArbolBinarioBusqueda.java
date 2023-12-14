@@ -137,24 +137,40 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    // Delete the predecessor of a given value in the tree
-    public void eliminarPredecesor(int x, Nodo nodoRef) {
-        if (nodoRef == null) {
-            return;
-        } else if (x < nodoRef.dato) {
-            eliminarPredecesor(x, nodoRef.izquierdo);
-        } else if (x > nodoRef.dato) {
-            eliminarPredecesor(x, nodoRef.derecho);
-        } else if (nodoRef.izquierdo != null && nodoRef.derecho != null) {
-            Nodo mayor = buscarMayor(nodoRef.izquierdo);
-            nodoRef.dato = mayor.dato;
-            eliminarPredecesor(mayor.dato, nodoRef.izquierdo);
-        } else {
-            if (nodoRef.izquierdo == null) {
-                nodoRef = nodoRef.derecho;
-            } else if (nodoRef.derecho == null) {
-                nodoRef = nodoRef.izquierdo;
-            }
+   // Eliminar el predecesor de un valor dado en el árbol
+public void eliminarPredecesor(int x, Nodo nodoRef) {
+    // If the current node is null, return (base case)
+    if (nodoRef == null) {
+        return;
+    }
+    // If the value to be deleted is less than the current node's value, go left
+    else if (x < nodoRef.dato) {
+        eliminarPredecesor(x, nodoRef.izquierdo);
+    }
+    // If the value to be deleted is greater than the current node's value, go right
+    else if (x > nodoRef.dato) {
+        eliminarPredecesor(x, nodoRef.derecho);
+    }
+    // If the node to be deleted has two children
+    else if (nodoRef.izquierdo != null && nodoRef.derecho != null) {
+        // Find the node with the maximum value in the left subtree (predecessor)
+        Nodo mayor = buscarMayor(nodoRef.izquierdo);
+        // Replace the current node's value with the predecessor's value
+        nodoRef.dato = mayor.dato;
+        // Recursively delete the predecessor from the left subtree
+        eliminarPredecesor(mayor.dato, nodoRef.izquierdo);
+    }
+    // If the node to be deleted has one or no child
+    else {
+        // If the left child is null, replace the current node with its right child
+        if (nodoRef.izquierdo == null) {
+            nodoRef = nodoRef.derecho;
+        }
+        // If the right child is null, replace the current node with its left child
+        else if (nodoRef.derecho == null) {
+            nodoRef = nodoRef.izquierdo;
         }
     }
+}
+
 }
