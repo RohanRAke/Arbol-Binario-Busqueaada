@@ -1,4 +1,7 @@
+// This class represents a Binary Search Tree
 public class ArbolBinarioBusqueda {
+    
+    // The root node of the tree
     private Nodo raiz;
 
     // Constructor
@@ -6,20 +9,20 @@ public class ArbolBinarioBusqueda {
         this.raiz = null;
     }
 
-    // Verificar si el árbol está vacío
+    // Check if the tree is empty
     public boolean esVacio() {
         return (this.raiz == null);
     }
 
-    // Obtener la raíz del árbol
+    // Get the root of the tree
     public Nodo obtenerRaiz() {
         return this.raiz;
     }
 
-    // Insertar un valor en el árbol
+    // Insert a value into the tree
     public void insertarValor(int valor) {
         if (this.raiz == null) {
-            System.out.println("Insertando raíz: " + valor);
+            System.out.println("Inserting root: " + valor);
             this.raiz = new Nodo();
             this.raiz.dato = valor;
             this.raiz.izquierdo = null;
@@ -29,11 +32,11 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    // Método auxiliar para insertar un nodo en el árbol
+    // Auxiliary method to insert a node into the tree
     private void insertarNodo(int valor, Nodo nodoRef) {
         if (valor <= nodoRef.dato) {
             if (nodoRef.izquierdo == null) {
-                System.out.println("Insertando hijo izquierdo de " + nodoRef.dato + ": " + valor);
+                System.out.println("Inserting left child of " + nodoRef.dato + ": " + valor);
                 nodoRef.izquierdo = new Nodo();
                 nodoRef.izquierdo.dato = valor;
                 nodoRef.izquierdo.izquierdo = null;
@@ -44,7 +47,7 @@ public class ArbolBinarioBusqueda {
         } else {
             if (valor > nodoRef.dato) {
                 if (nodoRef.derecho == null) {
-                    System.out.println("Insertando hijo derecho de " + nodoRef.dato + ": " + valor);
+                    System.out.println("Inserting right child of " + nodoRef.dato + ": " + valor);
                     nodoRef.derecho = new Nodo();
                     nodoRef.derecho.dato = valor;
                     nodoRef.derecho.izquierdo = null;
@@ -56,7 +59,7 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    // Imprimir el árbol horizontalmente
+    // Print the tree horizontally
     public void imprimirArbolHorizontal(int nivel, Nodo nodoRef) {
         if (nodoRef == null) {
             return;
@@ -72,7 +75,7 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    // Realizar un recorrido en orden del árbol
+    // Perform an in-order traversal of the tree
     public void enOrden(Nodo nodoRef) {
         if (nodoRef == null)
             return;
@@ -81,7 +84,7 @@ public class ArbolBinarioBusqueda {
         enOrden(nodoRef.derecho);
     }
 
-    // Realizar un recorrido en preorden del árbol
+    // Perform a pre-order traversal of the tree
     public void preOrden(Nodo nodoRef) {
         if (nodoRef == null)
             return;
@@ -90,7 +93,7 @@ public class ArbolBinarioBusqueda {
         preOrden(nodoRef.derecho);
     }
 
-    // Realizar un recorrido en postorden del árbol
+    // Perform a post-order traversal of the tree
     public void postOrden(Nodo nodoRef) {
         if (nodoRef == null)
             return;
@@ -99,7 +102,7 @@ public class ArbolBinarioBusqueda {
         System.out.print(nodoRef.dato + " - ");
     }
 
-    // Buscar un valor en el árbol
+    // Search for a value in the tree
     public boolean busqueda(int x, Nodo nodoRef) {
         if (nodoRef == null)
             return false;
@@ -111,19 +114,19 @@ public class ArbolBinarioBusqueda {
             return true;
     }
 
-    // Podar el árbol, eliminando todos los nodos
+    // Prune the tree, removing all nodes
     public void podarArbol(Nodo nodoRef) {
         if (nodoRef == null)
             return;
-        // Podar el subárbol izquierdo
+        // Prune the left subtree
         podarArbol(nodoRef.izquierdo);
-        // Podar el subárbol derecho
+        // Prune the right subtree
         podarArbol(nodoRef.derecho);
-        // Podar el nodo actual
+        // Prune the current node
         nodoRef = null;
     }
 
-    // Encontrar el nodo con el valor más grande en el árbol
+    // Find the node with the largest value in the tree
     public Nodo buscarMayor(Nodo nodoRef) {
         if (nodoRef == null) {
             return null;
@@ -134,7 +137,7 @@ public class ArbolBinarioBusqueda {
         }
     }
 
-    // Eliminar el predecesor de un valor dado en el árbol
+    // Delete the predecessor of a given value in the tree
     public void eliminarPredecesor(int x, Nodo nodoRef) {
         if (nodoRef == null) {
             return;
